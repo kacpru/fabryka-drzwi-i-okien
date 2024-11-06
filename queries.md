@@ -38,33 +38,33 @@ HAVING COUNT(zamowienie_id) > 1;
 SELECT zamowienie_id, data_zamowienia, klient_id
 FROM Zamowienia
 ORDER BY data_zamowienia DESC;
-
+```
 ### Zapytanie 5
 ```sql
 SELECT TOP 5 zamowienie_id, data_zamowienia, status
 FROM Zamowienia
 WHERE klient_id = 3
 ORDER BY data_zamowienia DESC;
-
+```
 ### Zapytanie 6
 ```sql
 SELECT DISTINCT miasto
 FROM Klienci;
-
+```
 ### Zapytanie 7 Wybór produktów droższych niż 100 zł
 ```sql
 SELECT produkt_id, nazwa, cena
 FROM Produkty
 WHERE cena > 100
 ORDER BY cena ASC;
-
+```
 ### Zapytanie 8
 */Grupowanie pracowników według oddziału/*
 ```sql
 SELECT oddzial_id, COUNT(pracownik_id) AS liczba_pracownikow
 FROM Pracownicy
 GROUP BY oddzial_id
-ORDER BY liczba_pracownikow DESC;
+```ORDER BY liczba_pracownikow DESC;
 
 ### Zapytanie 9
 ```sql
@@ -75,7 +75,9 @@ JOIN Zamowienia z ON k.klient_id = z.klient_id
 ORDER BY k.nazwisko ASC;
 ```
 ### Zapytanie 10:  Grupowanie produktów według typu i wyciąganie średniej ceny 
+```sql
 SELECT typ, AVG(cena) AS srednia_cena
 FROM Produkty
 GROUP BY typ
 HAVING AVG(cena) > 50;
+```
