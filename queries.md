@@ -59,7 +59,7 @@ WHERE cena > 100
 ORDER BY cena ASC;
 ```
 ### Zapytanie 8
-*/Grupowanie pracowników według oddziału/*
+--Grupowanie pracowników według oddziału
 ```sql
 SELECT oddzial_id, COUNT(pracownik_id) AS liczba_pracownikow
 FROM Pracownicy
