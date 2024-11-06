@@ -13,7 +13,8 @@
 
 ---
 
-### Zapytanie 1  [Wybierz wszystkich klientów z miasta Stalowa Wola]
+### Zapytanie 1  
+*/[Wybierz wszystkich klientów z miasta Stalowa Wola]*/
 SELECT * 
 FROM Klienci
 WHERE miasto = 'Stalowa Wola';
