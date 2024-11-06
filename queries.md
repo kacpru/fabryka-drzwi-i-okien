@@ -18,12 +18,13 @@
 SELECT * 
 FROM Klienci
 WHERE miasto = 'Stalowa Wola';
-
+```
 ### Zapytanie 2
 ```sql
 SELECT status, COUNT(*) AS liczba_zamowien
 FROM Zamowienia
 GROUP BY status;
+```
 
 ### Zapytanie 3:
 ```sql
@@ -31,7 +32,7 @@ SELECT klient_id, COUNT(zamowienie_id) AS liczba_zamowien
 FROM Zamowienia
 GROUP BY klient_id
 HAVING COUNT(zamowienie_id) > 1;
-
+```
 ### Zapytanie 4
 ```sql
 SELECT zamowienie_id, data_zamowienia, klient_id
@@ -57,7 +58,8 @@ FROM Produkty
 WHERE cena > 100
 ORDER BY cena ASC;
 
-### Zapytanie 8 Grupowanie pracowników według oddziału
+### Zapytanie 8
+*/Grupowanie pracowników według oddziału/*
 ```sql
 SELECT oddzial_id, COUNT(pracownik_id) AS liczba_pracownikow
 FROM Pracownicy
@@ -71,7 +73,7 @@ SELECT DISTINCT k.klient_id, k.imie, k.nazwisko
 FROM Klienci k
 JOIN Zamowienia z ON k.klient_id = z.klient_id
 ORDER BY k.nazwisko ASC;
-
+```
 ### Zapytanie 10:  Grupowanie produktów według typu i wyciąganie średniej ceny 
 SELECT typ, AVG(cena) AS srednia_cena
 FROM Produkty
