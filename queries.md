@@ -40,29 +40,29 @@ FROM Zamowienia
 WHERE klient_id = 3
 ORDER BY data_zamowienia DESC;
 
-### Zapytanie 6: /* Wyciąganie unikalnych miast, w których znajdują się klienci */
+### Zapytanie 6
 SELECT DISTINCT miasto
 FROM Klienci;
 
-### Zapytanie 7: /* Wybór produktów droższych niż 100 zł */
+### Zapytanie 7 Wybór produktów droższych niż 100 zł 
 SELECT produkt_id, nazwa, cena
 FROM Produkty
 WHERE cena > 100
 ORDER BY cena ASC;
 
-### Zapytanie 8: /* Grupowanie pracowników według oddziału */
+### Zapytanie 8 Grupowanie pracowników według oddziału 
 SELECT oddzial_id, COUNT(pracownik_id) AS liczba_pracownikow
 FROM Pracownicy
 GROUP BY oddzial_id
 ORDER BY liczba_pracownikow DESC;
 
-### Zapytanie 9: /* Znalezienie klientów z co najmniej jednym zamówieniem */
+### Zapytanie 9:  Znalezienie klientów z co najmniej jednym zamówieniem 
 SELECT DISTINCT k.klient_id, k.imie, k.nazwisko
 FROM Klienci k
 JOIN Zamowienia z ON k.klient_id = z.klient_id
 ORDER BY k.nazwisko ASC;
 
-### Zapytanie 10: /* Grupowanie produktów według typu i wyciąganie średniej ceny */
+### Zapytanie 10:  Grupowanie produktów według typu i wyciąganie średniej ceny 
 SELECT typ, AVG(cena) AS srednia_cena
 FROM Produkty
 GROUP BY typ
