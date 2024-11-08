@@ -1,7 +1,7 @@
 ## Lista zapytań
 
 1. [SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
-2. [Grupowanie zamówień według statusu zamówienia](#zapytanie-2)
+2. [GROUP BY - Grupowanie zamówień według statusu zamówienia](#zapytanie-2)
 3. [Grupowanie i filtrowanie grup przy użyciu HAVING](#zapytanie-3)
 4. [Sortowanie wyników według daty zamówienia](#zapytanie-4)
 5. [Pobranie pięciu ostatnich zamówień dla klienta](#zapytanie-5)
@@ -14,12 +14,14 @@
 ---
 
 ### Zapytanie 1  
+SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola
 ```sql
 SELECT * 
 FROM Klienci
 WHERE miasto = 'Stalowa Wola';
 ```
 ### Zapytanie 2
+GROUP BY - Grupowanie zamówień według statusu zamówienia
 ```sql
 SELECT status, COUNT(*) AS liczba_zamowien
 FROM Zamowienia
