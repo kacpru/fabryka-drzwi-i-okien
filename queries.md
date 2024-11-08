@@ -1,11 +1,11 @@
 ## Lista zapytań
 
-1. [SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
-2. [GROUP BY - Grupowanie zamówień według statusu zamówienia](#zapytanie-2)
-3. [Grupowanie i filtrowanie grup przy użyciu HAVING](#zapytanie-3)
-4. [Sortowanie wyników według daty zamówienia](#zapytanie-4)
-5. [Pobranie pięciu ostatnich zamówień dla klienta](#zapytanie-5)
-6. [Wyciąganie unikalnych miast, w których znajdują się klienci](#zapytanie-6)
+1. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
+2. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-2)
+3. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-3)
+4. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-4)
+5. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-5)
+6. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-6)
 7. [Wybór produktów droższych niż 100 zł](#zapytanie-7)
 8. [Grupowanie pracowników według oddziału](#zapytanie-8)
 9. [Znalezienie klientów z co najmniej jednym zamówieniem](#zapytanie-9)
@@ -16,9 +16,9 @@
 ### Zapytanie 1  
 SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola
 ```sql
-SELECT * 
+SELECT *
 FROM Klienci
-WHERE miasto = 'Stalowa Wola';
+WHERE adres LIKE '%Stalowa Wola%';
 ```
 ### Zapytanie 2
 GROUP BY - Grupowanie zamówień według statusu zamówienia
@@ -29,6 +29,7 @@ GROUP BY status;
 ```
 
 ### Zapytanie 3:
+GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie
 ```sql
 SELECT klient_id, COUNT(zamowienie_id) AS liczba_zamowien
 FROM Zamowienia
@@ -36,24 +37,28 @@ GROUP BY klient_id
 HAVING COUNT(zamowienie_id) > 1;
 ```
 ### Zapytanie 4
+ORDER BY - Sortowanie wyników według daty zamówienia
 ```sql
 SELECT zamowienie_id, data_zamowienia, klient_id
 FROM Zamowienia
 ORDER BY data_zamowienia DESC;
 ```
 ### Zapytanie 5
+ORDER BY,TOP - Pobranie pięciu ostatnich wysłanych zamówień
 ```sql
-SELECT TOP 5 zamowienie_id, data_zamowienia, status
+SELECT TOP 5 *
 FROM Zamowienia
-WHERE klient_id = 3
+WHERE status = 'wysłane'
 ORDER BY data_zamowienia DESC;
 ```
 ### Zapytanie 6
+DISTINCT - Wyszukaj wszystkie stanowiska w firmie
 ```sql
-SELECT DISTINCT miasto
-FROM Klienci;
+SELECT DISTINCT stanowisko
+FROM Pracownicy;
 ```
-### Zapytanie 7 Wybór produktów droższych niż 100 zł
+### Zapytanie 7 
+Wybór produktów droższych niż 100 zł
 ```sql
 SELECT produkt_id, nazwa, cena
 FROM Produkty
