@@ -1,6 +1,6 @@
 ## Lista zapytań
 
-1. [Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
+1. [SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
 2. [Grupowanie zamówień według statusu zamówienia](#zapytanie-2)
 3. [Grupowanie i filtrowanie grup przy użyciu HAVING](#zapytanie-3)
 4. [Sortowanie wyników według daty zamówienia](#zapytanie-4)
