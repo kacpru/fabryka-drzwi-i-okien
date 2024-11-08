@@ -64,11 +64,12 @@ ORDER BY cena ASC;
 SELECT oddzial_id, COUNT(pracownik_id) AS liczba_pracownikow
 FROM Pracownicy
 GROUP BY oddzial_id
-```ORDER BY liczba_pracownikow DESC;
+ORDER BY liczba_pracownikow DESC;
+```
 
 ### Zapytanie 9
+Znalezienie klientów z co najmniej jednym zamówieniem
 ```sql
-*/Znalezienie klientów z co najmniej jednym zamówieniem/* 
 SELECT DISTINCT k.klient_id, k.imie, k.nazwisko
 FROM Klienci k
 JOIN Zamowienia z ON k.klient_id = z.klient_id
