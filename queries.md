@@ -6,10 +6,10 @@
 4. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-4)
 5. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-5)
 6. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-6)
-7. [Wybór produktów droższych niż 100 zł](#zapytanie-7)
-8. [Grupowanie pracowników według oddziału](#zapytanie-8)
+7. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-7)
+8. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-8)
 9. [Znalezienie klientów z co najmniej jednym zamówieniem](#zapytanie-9)
-10. [Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-10)
+10. [AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-10)
 
 ---
 
@@ -58,34 +58,30 @@ SELECT DISTINCT stanowisko
 FROM Pracownicy;
 ```
 ### Zapytanie 7 
-Wybór produktów droższych niż 100 zł
+BETWEEN - Wybór produktów z przedziału 300 do 800 zł
 ```sql
-SELECT produkt_id, nazwa, cena
+SELECT *
 FROM Produkty
-WHERE cena > 100
-ORDER BY cena ASC;
+WHERE cena BETWEEN 300 AND 800;
 ```
 ### Zapytanie 8
---Grupowanie pracowników według oddziału
+WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł
 ```sql
-SELECT oddzial_id, COUNT(pracownik_id) AS liczba_pracownikow
+SELECT *
 FROM Pracownicy
-GROUP BY oddzial_id
-ORDER BY liczba_pracownikow DESC;
+WHERE imie IN('Piotr','Paweł');
 ```
 
 ### Zapytanie 9
 Znalezienie klientów z co najmniej jednym zamówieniem
 ```sql
-SELECT DISTINCT k.klient_id, k.imie, k.nazwisko
-FROM Klienci k
-JOIN Zamowienia z ON k.klient_id = z.klient_id
-ORDER BY k.nazwisko ASC;
+
 ```
-### Zapytanie 10:  Grupowanie produktów według typu i wyciąganie średniej ceny 
+### Zapytanie 10
+AVG, AS - Grupowanie produktów według typu i wyciąganie średniej ceny 
 ```sql
-SELECT typ, AVG(cena) AS srednia_cena
+SELECT nazwa, AVG(cena) AS srednia_cena
 FROM Produkty
-GROUP BY typ
-HAVING AVG(cena) > 50;
+GROUP BY nazwa
+
 ```
