@@ -1,5 +1,21 @@
 ## Lista zapytań
+ddl
+1.[CREATE TABLE - Tworzenie nowej tabeli Promocje](#zapytanie-1)
+2.[INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
+3.[UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
+4.[DELETE - Usunięcie promocji, która się już zakończyła](#zapytanie-4)
+5.[ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna](#zapytanie-5)
+6.[ALTER TABLE, ALTER COLUMN - modyfikacja kolumny opis na bardziej szczegółowy](#zapytanie-6)
+7.[ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'](#zapytanie-7)
+8.[PRIMARY KEY - Usunięcie wszystkich danych z tabel](#zapytanie-8)
+9.[DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-8)
+10.[PRIMARY KEY - ustawienie](#zapytanie-1)
+11.[INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
+12.[UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
+13.[DELETE - Usunięcie promocji, która się już zakończyła](#zapytanie-4)
 
+8.[TRUNCATE TABLE - Usunięcie wszystkich danych z tabel](#zapytanie-8)
+9.[DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-8)
 1. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
 2. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-2)
 3. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-3)
@@ -13,6 +29,73 @@
 
 
 ---
+### Zapytanie 1  
+CREATE TABLE - Tworzenie nowej tabeli Promocje.(Tworzenie pozostałych tabel w pliku schema.md tj:Klienci,Produkty,Okna,Drzwi,Pracownicy,Zamówienia,SzczegółyZamówienia)
+
+```sql
+CREATE TABLE CREATE TABLE Promocje (
+    promocja_id INT IDENTITY(1,1),
+    nazwa NVARCHAR(100),
+    opis NVARCHAR(MAX),
+    data_rozpoczecia DATE,
+    data_zakonczenia DATE,
+    rabat DECIMAL(5, 2)
+);
+
+
+```
+### Zapytanie 2 
+INSERT - Dodanie danych do tabeli Promocje
+```sql
+C
+
+```
+### Zapytanie 3 
+UPDATE - Zaktualizowanie rabatu dla jednej z promocji
+```sql
+UPDATE Promocje
+SET rabat = 25.00
+WHERE nazwa = 'Zimowa Wyprzedaż';
+```
+### Zapytanie 4 
+DELETE - Usunięcie promocji, która się już zakończyła
+```sql
+DELETE FROM Promocje
+WHERE data_zakonczenia < GETDATE();
+```
+### Zapytanie 5
+ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna
+```sql
+ALTER TABLE Promocje
+ADD aktywna BIT DEFAULT 1;
+
+```
+### Zapytanie 6
+ALTER TABLE, ALTER COLUMN - modyfikacja kolumny 'opis' na bardziej szczegółowy
+```sql
+ALTER TABLE Promocje
+ALTER COLUMN opis NVARCHAR(500);
+```
+### Zapytanie 7
+ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'
+```sql
+ALTER TABLE Promocje
+ALTER COLUMN opis NVARCHAR(500);
+```
+
+### Zapytanie 8
+TRUNCATE TABLE - Usunięcie wszystkich danych z tabel
+```sql
+TRUNCATE TABLE Promocje;
+```
+### Zapytanie 9
+DROP TABLE - Całkowite usunięcie tabeli z bazy danych
+```sql
+DROP TABLE Promocje;
+```
+
+
+
 
 ### Zapytanie 1  
 SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola
