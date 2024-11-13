@@ -1,6 +1,6 @@
 ## Lista zapytań
-1.[CREATE TABLE - Tworzenie nowej tabeli Promocje](#zapytanie-1)
-2.[INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
+1. [CREATE TABLE - Tworzenie nowej tabeli Promocje](#zapytanie-1)
+2. [INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
 3.[UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
 4.[DELETE - Usunięcie promocji, która się już zakończyła](#zapytanie-4)
 5.[ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna](#zapytanie-5)
