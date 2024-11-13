@@ -1,5 +1,4 @@
 ## Lista zapytań
-ddl
 1.[CREATE TABLE - Tworzenie nowej tabeli Promocje](#zapytanie-1)
 2.[INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
 3.[UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
