@@ -1,20 +1,20 @@
 ## Lista zapytań
 1. [CREATE TABLE - Tworzenie nowej tabeli Promocje](#zapytanie-1)
 2. [INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
-3.[UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
-4.[DELETE - Usunięcie promocji, która się już zakończyła](#zapytanie-4)
-5.[ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna](#zapytanie-5)
-6.[ALTER TABLE, ALTER COLUMN - modyfikacja kolumny opis na bardziej szczegółowy](#zapytanie-6)
-7.[ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'](#zapytanie-7)
-8.[PRIMARY KEY - Usunięcie wszystkich danych z tabel](#zapytanie-8)
-9.[DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-8)
-10.[PRIMARY KEY - ustawienie](#zapytanie-1)
-11.[INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
-12.[UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
-13.[DELETE - Usunięcie promocji, która się już zakończyła](#zapytanie-4)
+3. [UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
+4. [DELETE - Usunięcie promocji, która się już zakończyła](#zapytanie-4)
+5. [ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna](#zapytanie-5)
+6. [ALTER TABLE, ALTER COLUMN - modyfikacja kolumny opis na bardziej szczegółowy](#zapytanie-6)
+7. [ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'](#zapytanie-7)
+8. [PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny](#zapytanie-8)
+9. [NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL](#zapytanie-9)
+10 .[CHECK - Dodanie constraint CHECK, aby zapewnić, że rabat nie może być mniejszy niż 0 i nie większy niż 100.](#zapytanie-10)
+11. [UNIQUE - Zmiana kolumny 'nazwa', aby była unikalna. Oznacza to, że każda promocja będzie miała inną nazwę.](#zapytanie-11)
+12. [DEFAULT - Ustawienie wartości domyślnej dla kolumny 'data_rozpoczecia', aby była ustawiona na dzisiejszą datę, jeśli użytkownik jej nie poda.](#zapytanie-12)
+13. [INDEX - Stworzenie indeksu dla kolumny 'data_rozpoczecia', aby przyspieszyć wyszukiwanie promocji po dacie rozpoczęcia.](#zapytanie-13)
+14. [TRUNCATE TABLE - Usunięcie wszystkich danych z tabel](#zapytanie-8)
+15. [DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-8)
 
-8.[TRUNCATE TABLE - Usunięcie wszystkich danych z tabel](#zapytanie-8)
-9.[DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-8)
 1. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
 2. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-2)
 3. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-3)
@@ -40,14 +40,14 @@ CREATE TABLE CREATE TABLE Promocje (
     data_zakonczenia DATE,
     rabat DECIMAL(5, 2)
 );
-
-
 ```
 ### Zapytanie 2 
 INSERT - Dodanie danych do tabeli Promocje
 ```sql
-C
-
+INSERT INTO Promocje (nazwa, opis, data_rozpoczecia, data_zakonczenia, rabat)
+VALUES
+('Zimowa Wyprzedaż', 'Rabaty na okna i drzwi do -20%', '2024-12-01', '2024-12-31', 20.00),
+('Promocja Wakacyjna', 'Rabaty na okna balkonowe do -15%', '2024-07-01', '2024-07-31', 15.00);
 ```
 ### Zapytanie 3 
 UPDATE - Zaktualizowanie rabatu dla jednej z promocji
@@ -67,7 +67,6 @@ ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja j
 ```sql
 ALTER TABLE Promocje
 ADD aktywna BIT DEFAULT 1;
-
 ```
 ### Zapytanie 6
 ALTER TABLE, ALTER COLUMN - modyfikacja kolumny 'opis' na bardziej szczegółowy
@@ -81,13 +80,47 @@ ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'
 ALTER TABLE Promocje
 ALTER COLUMN opis NVARCHAR(500);
 ```
-
 ### Zapytanie 8
+PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny
+```sql
+ALTER TABLE Promocje
+ADD CONSTRAINT PK_Promocje PRIMARY KEY (promocja_id);
+```
+### Zapytanie 9
+NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL
+```sql
+ALTER TABLE Promocje
+ALTER COLUMN nazwa NVARCHAR(100) NOT NULL;
+```
+### Zapytanie 10
+CHECK - Dodajemy constraint CHECK, aby zapewnić, że rabat nie może być mniejszy niż 0 i nie większy niż 100.
+```sql
+ALTER TABLE Promocje
+ADD CONSTRAINT CHK_Rabat CHECK (rabat >= 0 AND rabat <= 100);
+```
+### Zapytanie 11
+UNIQUE - Zmiana kolumny 'nazwa', aby była unikalna. Oznacza to, że każda promocja będzie miała inną nazwę.
+```sql
+ALTER TABLE Promocje
+ADD CONSTRAINT UQ_Nazwa UNIQUE (nazwa);
+```
+### Zapytanie 12
+DEFAULT - Ustawienie wartości domyślnej dla kolumny 'data_rozpoczecia', aby była ustawiona na dzisiejszą datę, jeśli użytkownik jej nie poda.
+```sql
+ALTER TABLE Promocje
+ADD CONSTRAINT DF_DataRozpoczecia DEFAULT GETDATE() FOR data_rozpoczecia;
+```
+### Zapytanie 13
+INDEX - Stworzenie indeksu dla kolumny 'data_rozpoczecia', aby przyspieszyć wyszukiwanie promocji po dacie rozpoczęcia.
+```sql
+CREATE INDEX IX_DataRozpoczecia ON Promocje(data_rozpoczecia);
+```
+### Zapytanie 14
 TRUNCATE TABLE - Usunięcie wszystkich danych z tabel
 ```sql
 TRUNCATE TABLE Promocje;
 ```
-### Zapytanie 9
+### Zapytanie 15
 DROP TABLE - Całkowite usunięcie tabeli z bazy danych
 ```sql
 DROP TABLE Promocje;
