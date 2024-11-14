@@ -12,9 +12,8 @@
 11. [UNIQUE - Zmiana kolumny 'nazwa', aby była unikalna. Oznacza to, że każda promocja będzie miała inną nazwę.](#zapytanie-11)
 12. [DEFAULT - Ustawienie wartości domyślnej dla kolumny 'data_rozpoczecia', aby była ustawiona na dzisiejszą datę, jeśli użytkownik jej nie poda.](#zapytanie-12)
 13. [INDEX - Stworzenie indeksu dla kolumny 'data_rozpoczecia', aby przyspieszyć wyszukiwanie promocji po dacie rozpoczęcia.](#zapytanie-13)
-14. [TRUNCATE TABLE - Usunięcie wszystkich danych z tabel](#zapytanie-8)
-15. [DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-8)
-
+14. [TRUNCATE TABLE - Usunięcie wszystkich danych z tabel](#zapytanie-14)
+15. [DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-15)
 16. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-16)
 17. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-17)
 18. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-18)
