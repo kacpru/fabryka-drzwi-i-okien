@@ -7,6 +7,7 @@ ddl
 5. [ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna](#zapytanie-5)
 6. [ALTER TABLE, ALTER COLUMN - modyfikacja kolumny opis na bardziej szczegółowy](#zapytanie-6)
 7. [ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'](#zapytanie-7)
+
 coinstrant
 8. [PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny](#zapytanie-8)
 9. [NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL](#zapytanie-9)
