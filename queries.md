@@ -1,4 +1,5 @@
 ## Lista zapytań
+ddl
 1. [CREATE TABLE - Tworzenie nowej tabeli Promocje](#zapytanie-1)
 2. [INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
 3. [UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
@@ -6,6 +7,7 @@
 5. [ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna](#zapytanie-5)
 6. [ALTER TABLE, ALTER COLUMN - modyfikacja kolumny opis na bardziej szczegółowy](#zapytanie-6)
 7. [ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'](#zapytanie-7)
+coinstrant
 8. [PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny](#zapytanie-8)
 9. [NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL](#zapytanie-9)
 10. [CHECK - Dodanie constraint CHECK, aby zapewnić, że rabat nie może być mniejszy niż 0 i nie większy niż 100.](#zapytanie-10)
