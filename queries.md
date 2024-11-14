@@ -15,16 +15,16 @@
 14. [TRUNCATE TABLE - Usunięcie wszystkich danych z tabel](#zapytanie-8)
 15. [DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-8)
 
-1. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
-2. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-2)
-3. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-3)
-4. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-4)
-5. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-5)
-6. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-6)
-7. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-7)
-8. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-8)
-9. [GROUP BY,SUM - Obliczenie łącznej wartości zamówień](#zapytanie-9)
-10. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-10)
+16. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-1)
+17. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-2)
+18. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-3)
+19. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-4)
+20. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-5)
+21. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-6)
+22. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-7)
+23. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-8)
+24. [GROUP BY,SUM - Obliczenie łącznej wartości zamówień](#zapytanie-9)
+25. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-10)
 
 
 ---
