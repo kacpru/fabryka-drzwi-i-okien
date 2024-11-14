@@ -210,3 +210,106 @@ FROM Produkty
 GROUP BY nazwa
 
 ```
+### Zapytanie 26
+INNER JOIN - Pobranie wierszy, które mają dopasowanie w obu tabelach.
+Otrzymamy listę klientów wraz z datami ich zamówień. Pojawią się tylko ci klienci, którzy mają złożone zamówienia.
+```sql
+SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
+FROM Klienci
+INNER JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
+```
+### Zapytanie 27
+LEFT JOIN (LEFT OUTER JOIN)
+Pobiera wszystkie wiersze z tabeli po lewej stronie, a dane z prawej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
+Otrzymasz listę wszystkich klientów. Jeśli dany klient nie ma zamówień, kolumna data_zamowienia będzie zawierała wartość NULL
+```sql
+SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
+FROM Klienci
+LEFT JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
+```
+### Zapytanie 28
+RIGHT JOIN (RIGHT OUTER JOIN)
+Opis: Pobiera wszystkie wiersze z tabeli po prawej stronie, a dane z lewej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
+Wynik: Otrzymasz listę wszystkich szczegółów zamówień. Jeśli w zamówieniu użyto produktu, którego nie ma w tabeli Produkty, kolumna nazwa zwróci NULL.
+
+```sql
+SELECT Produkty.nazwa, SzczegolyZamowienia.ilosc
+FROM Produkty
+RIGHT JOIN SzczegolyZamowienia ON Produkty.produkt_id = SzczegolyZamowienia.produkt_id;
+```
+### Zapytanie 29
+FULL JOIN (FULL OUTER JOIN)
+Opis: Pobiera wszystkie wiersze z obu tabel. Jeśli wiersz nie ma dopasowania, zwraca NULL dla brakujących danych.
+Wynik: Otrzymasz listę wszystkich klientów i wszystkich zamówień. Klienci bez zamówień i zamówienia bez klientów będą miały NULL w brakujących kolumnach.
+
+```sql
+SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
+FROM Klienci
+FULL JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
+```
+### Zapytanie 30
+CROSS JOIN
+Opis: Tworzy iloczyn kartezjański obu tabel – łączy każdy wiersz z każdej tabeli ze sobą.
+Wynik: Otrzymasz każdą możliwą kombinację klientów i produktów. Jeśli masz 10 klientów i 5 produktów, wynik zawiera 50 wierszy
+
+```sql
+SELECT Klienci.imie, Produkty.nazwa
+FROM Klienci
+CROSS JOIN Produkty;
+```
+### Zapytanie 30
+SELF JOIN
+Opis: Łączy tabelę z samą sobą.
+Wynik: Otrzymasz listę produktów z tej samej kategorii (ale różnych), sparowanych ze sobą.
+
+```sql
+SELECT p1.nazwa AS Produkt, p2.nazwa AS PowiazanyProdukt
+FROM Produkty p1
+INNER JOIN Produkty p2 ON p1.kategoria = p2.kategoria AND p1.produkt_id <> p2.produkt_id;
+```
+### Zapytanie 31
+NATURAL JOIN
+Opis: Automatycznie łączy tabele na podstawie wspólnych kolumn o tej samej nazwie i typie danych.
+Wynik: Zwraca wiersze z obu tabel, które mają wspólną kolumnę produkt_id. Jeśli nie ma wspólnych danych, wynik będzie pusty.
+
+```sql
+SELECT *
+FROM Produkty
+NATURAL JOIN SzczegolyZamowienia;
+```
+### Zapytanie 32
+LEFT JOIN z filtrem
+Opis: Pobiera wiersze z lewej tabeli, ale ogranicza wyniki do tych, które nie mają dopasowania w prawej tabeli.
+Wynik: Lista klientów, którzy nie złożyli zamówień.
+
+```sql
+
+SELECT Klienci.imie, Klienci.nazwisko
+FROM Klienci
+LEFT JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id
+WHERE Zamowienia.zamowienie_id IS NULL;
+```
+### Zapytanie 33
+INNER JOIN z wieloma tabelami
+Opis: Łączy trzy lub więcej tabel w jednym zapytaniu.
+Wynik: Lista zamówień z nazwami klientów i produktów, które zostały zamówione.
+
+```sql
+SELECT Zamowienia.zamowienie_id, Klienci.imie, Klienci.nazwisko, Produkty.nazwa
+FROM Zamowienia
+INNER JOIN Klienci ON Zamowienia.klient_id = Klienci.klient_id
+INNER JOIN SzczegolyZamowienia ON Zamowienia.zamowienie_id = SzczegolyZamowienia.zamowienie_id
+INNER JOIN Produkty ON SzczegolyZamowienia.produkt_id = Produkty.produkt_id;
+```
+### Zapytanie 34
+ANTI JOIN (wykorzystanie NOT IN)
+Opis: Wyświetla wiersze z jednej tabeli, które nie mają dopasowania w drugiej tabeli.
+Wynik: Lista produktów, które nigdy nie zostały sprzedane.
+
+```sql
+SELECT Produkty.nazwa
+FROM Produkty
+WHERE produkt_id NOT IN (SELECT produkt_id FROM SzczegolyZamowienia);
+```
+
+
