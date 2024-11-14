@@ -9,9 +9,10 @@ ddl
 7. [ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'](#zapytanie-7)
 
 coinstrant
- 8. [PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny](#zapytanie-8)
- 9. [NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL](#zapytanie-9)
- 10. [CHECK - Dodanie constraint CHECK, aby zapewnić, że rabat nie może być mniejszy niż 0 i nie większy niż 100.](#zapytanie-10)
+
+8. [PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny](#zapytanie-8)
+9. [NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL](#zapytanie-9)
+10. [CHECK - Dodanie constraint CHECK, aby zapewnić, że rabat nie może być mniejszy niż 0 i nie większy niż 100.](#zapytanie-10)
 11. [UNIQUE - Zmiana kolumny 'nazwa', aby była unikalna. Oznacza to, że każda promocja będzie miała inną nazwę.](#zapytanie-11)
 12. [DEFAULT - Ustawienie wartości domyślnej dla kolumny 'data_rozpoczecia', aby była ustawiona na dzisiejszą datę, jeśli użytkownik jej nie poda.](#zapytanie-12)
 13. [INDEX - Stworzenie indeksu dla kolumny 'data_rozpoczecia', aby przyspieszyć wyszukiwanie promocji po dacie rozpoczęcia.](#zapytanie-13)
