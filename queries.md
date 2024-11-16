@@ -406,11 +406,7 @@ WHERE rabat > (SELECT AVG(rabat) FROM Zamowienia WHERE klient_id = 1);
 Podzapytanie, które zwraca więcej niż jedną kolumnę i może być używane z operatorem IN:
 Wyjaśnienie: Podzapytanie zwraca dwie kolumny (rabat i data_zamowienia), a zapytanie główne filtruje wyniki na podstawie tej kombinacji
 ```sql
--- Znajdź zamówienia, które mają rabat większy niż te w tabeli z zamówieniami, gdzie rabat jest wyższy niż 20
-SELECT zamowienie_id, rabat
-FROM Zamowienia
-WHERE (rabat, data_zamowienia) IN 
-    (SELECT rabat, data_zamowienia FROM Zamowienia WHERE rabat > 20);
+
 
 ```
 ### Zapytanie 9
