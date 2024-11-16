@@ -36,7 +36,29 @@ zapytania i grupowanie
 30. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-30)
 31. [CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"](#zapytanie-31)
 32. [MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli](#zapytanie-32)
+33. [](#zapytanie-33)
+34. [](#zapytanie-34)
+35. [](#zapytanie-35)
+36. [](#zapytanie-36)
+37. [](#zapytanie-37)
+38. [](#zapytanie-38)
+39. [](#zapytanie-39)
+40. [](#zapytanie-40)
 
+łączenie tabel
+
+41. [INNER JOIN -pobranie listy klientów](#zapytanie-41)
+42. [LEFT JOIN - pobranie listy klientów](#zapytanie-42)
+43. [RIGHT JOIN nowe](#zapytanie-43)
+44. [FULL JOIN - pobranie listy klientów i zamówień](#zapytanie-44)
+45. [CROSS JOIN - iloczyń kartezjański klientów i produktów](#zapytanie-45)
+46. [SELF JOIN - lista produktów z tej samej kategorii](#zapytanie-46)
+47. [NATURAL JOIN - automatyczne połączenie tabel](#zapytanie-47)
+48. [LEFT JOIN,WHERE](#zapytanie-48)
+49. [](#zapytanie-49)
+50. [](#zapytanie-50)
+51. [](#zapytanie-51)
+52. [](#zapytanie-52)
 ---
 ### Zapytanie 1  
 CREATE TABLE - Tworzenie nowej tabeli Promocje.(Tworzenie pozostałych tabel w pliku schema.sql tj:Klienci,Produkty,Okna,Drzwi,Pracownicy,Zamówienia,SzczegółyZamówienia)
