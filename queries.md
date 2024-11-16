@@ -1,5 +1,5 @@
 ## Lista zapytań
-ddl
+ddl ,uprawnienia i  coinstranty
 1. [CREATE TABLE - Tworzenie nowej tabeli Promocje](#zapytanie-1)
 2. [INSERT - Dodanie danych do tabeli Promocje](#zapytanie-2)
 3. [UPDATE - Zaktualizowanie rabatu dla jednej z promocj](#zapytanie-3)
@@ -7,10 +7,16 @@ ddl
 5. [ALTER TABLE, ADD COLUMN - Dodanie kolumny do tabeli informującej,czy promocja jest aktywna](#zapytanie-5)
 6. [ALTER TABLE, ALTER COLUMN - modyfikacja kolumny opis na bardziej szczegółowy](#zapytanie-6)
 7. [ALTER TABLE, DROP COLUMN - Usunięcie kolumny 'aktywna'](#zapytanie-7)
+8. [GRANT SELECT, INSERT - przyznanie użytkownikowi uprawnienia do odczytu i wstawiania danych w tabeli Promocje](#zapytanie-1)
+9. [GRANT UPDATE - Pozwala użytkownikowi na modyfikację istniejących danych w tabeli Promocje](#zapytanie 9)
+10. [GRANT DELETE -Pozwalenie użytkownikowi na usuwanie danych z tabeli Promocje](#zapytanie-10)
+11. [REVOKE  - cofnięcie  uprawnień dla użytkownika dla tabeli Promocje](#zapytanie-11)
+12. [DENY - zablokowanie uprawnień dla użytkownika do usuwania z tabeli Promocje](#zapytanie-12)
+13. [](#zapytanie-13)
+14. [](#zapytanie-14)
+coinstrant 
 
-coinstrant
-
-8. [PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny](#zapytanie-8)
+15. [PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny](#zapytanie-8)
 9. [NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL](#zapytanie-9)
 10. [CHECK - Dodanie constraint CHECK, aby zapewnić, że rabat nie może być mniejszy niż 0 i nie większy niż 100.](#zapytanie-10)
 11. [UNIQUE - Zmiana kolumny 'nazwa', aby była unikalna. Oznacza to, że każda promocja będzie miała inną nazwę.](#zapytanie-11)
@@ -18,6 +24,7 @@ coinstrant
 13. [INDEX - Stworzenie indeksu dla kolumny 'data_rozpoczecia', aby przyspieszyć wyszukiwanie promocji po dacie rozpoczęcia.](#zapytanie-13)
 14. [TRUNCATE TABLE - Usunięcie wszystkich danych z tabel](#zapytanie-14)
 15. [DROP TABLE - Całkowite usunięcie tabeli z bazy danych](#zapytanie-15)
+
 
 zapytania i grupowanie
 
@@ -31,14 +38,15 @@ zapytania i grupowanie
 23. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-23)
 24. [GROUP BY,SUM - Obliczenie łącznej wartości zamówień](#zapytanie-24)
 25. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-25)
-
+25. [CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"](#zapytanie-25)
+26. [MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli](#zapytanie-25)
 
 ---
 ### Zapytanie 1  
 CREATE TABLE - Tworzenie nowej tabeli Promocje.(Tworzenie pozostałych tabel w pliku schema.sql tj:Klienci,Produkty,Okna,Drzwi,Pracownicy,Zamówienia,SzczegółyZamówienia)
 
 ```sql
-CREATE TABLE CREATE TABLE Promocje (
+CREATE TABLE Promocje (
     promocja_id INT IDENTITY(1,1),
     nazwa NVARCHAR(100),
     opis NVARCHAR(MAX),
@@ -87,6 +95,39 @@ ALTER TABLE Promocje
 ALTER COLUMN opis NVARCHAR(500);
 ```
 ### Zapytanie 8
+GRANT SELECT, INSERT - przyznanie użytkownikowi uprawnienia do odczytu i wstawiania danych w tabeli Promocje 
+```sql
+GRANT SELECT, INSERT ON Promocje TO Uzytkownik;
+```
+### Zapytanie 9
+GRANT UPDATE - Pozwala użytkownikowi na modyfikację istniejących danych w tabeli Promocje
+```sql
+GRANT UPDATE ON Promocje TO Uzytkownik;
+```
+### Zapytanie 10
+GRANT DELETE -Pozwala użytkownikowi na usuwanie danych z tabeli Promocje 
+```sql
+GRANT DELETE ON Promocje TO Uzytkownik;
+```
+
+### Zapytanie 11
+REVOKE  - cofnięcie  uprawnień dla użytkownika dla tabeli Promocje
+ 
+```sql
+REVOKE SELECT ON Promocje FROM Uzytkownik;
+
+### Zapytanie 12
+ DENY - zablokowanie uprawnień dla użytkownika do usuwania z tabeli Promocje
+ 
+```sql
+DENY DELETE ON dbo.Promocje TO user2;
+
+```
+
+
+
+
+### Zapytanie 8
 PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny
 ```sql
 ALTER TABLE Promocje
@@ -131,9 +172,6 @@ DROP TABLE - Całkowite usunięcie tabeli z bazy danych
 ```sql
 DROP TABLE Promocje;
 ```
-
-
-
 
 ### Zapytanie 16  
 SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola
@@ -208,8 +246,32 @@ GROUP BY,AVG, AS - Grupowanie produktów według typu i wyciąganie średniej ce
 SELECT nazwa, AVG(cena) AS srednia_cena
 FROM Produkty
 GROUP BY nazwa
+```
+### Zapytanie 25
+CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"
+```sql
+SELECT nazwa, 
+       CASE 
+           WHEN rabat >= 50 THEN 'Wysoki rabat'
+           ELSE 'Niski rabat'
+       END AS KategoriaRabatu
+FROM Promocje;
 
 ```
+MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli
+### Zapytanie 25
+MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli
+```sql
+SELECT MIN(data_zamowienia) AS NajwczesniejszeZamowienie, MAX(data_zamowienia) AS NajpóźniejszeZamowienie
+FROM Zamowienia;
+
+```
+
+
+
+
+
+
 ### Zapytanie 26
 INNER JOIN - Pobranie wierszy, które mają dopasowanie w obu tabelach.
 Otrzymamy listę klientów wraz z datami ich zamówień. Pojawią się tylko ci klienci, którzy mają złożone zamówienia.
@@ -311,5 +373,113 @@ SELECT Produkty.nazwa
 FROM Produkty
 WHERE produkt_id NOT IN (SELECT produkt_id FROM SzczegolyZamowienia);
 ```
+### Zapytanie 
+SELF JOIN - Używane do połączenia tabeli z samą sobą, np. do analizy hierarchii,pobieramy pary promocji, gdzie jedna kończy się przed rozpoczęciem drugiej.
+```sql
+SELECT P1.promocja_id, P1.nazwa AS Nazwa1, P2.nazwa AS Nazwa2
+FROM Promocje P1
+JOIN Promocje P2
+ON P1.data_zakonczenia < P2.data_rozpoczecia;
 
+```
+### Zapytanie 
+Łączy rekordy na podstawie warunku nierówności,Łączymy promocje z zamówieniami, gdzie cena zamówienia jest mniejsza niż wartość rabatu pomnożona przez 100 
+```sql
+SELECT P.promocja_id, P.nazwa, Z.zamowienie_id, Z.cena
+FROM Promocje P
+JOIN Zamowienia Z
+ON Z.cena < P.rabat * 100;
 
+```
+### Zapytanie 9
+1. Podzapytanie jednokolumnowe
+Podzapytanie, które zwraca pojedynczą kolumnę i jest używane w klauzuli WHERE:
+Wyjaśnienie: To zapytanie używa podzapytania jednokolumnowego w klauzuli WHERE, aby porównać rabat w tabeli Zamowienia z średnim rabatem przypisanym do klienta o klient_id = 1.
+```sql
+-- Znajdź zamówienia, których rabat jest większy niż średni rabat dla zamówień klienta o ID = 1
+SELECT zamowienie_id, rabat
+FROM Zamowienia
+WHERE rabat > (SELECT AVG(rabat) FROM Zamowienia WHERE klient_id = 1);
+```
+### Zapytanie 10
+2. Podzapytanie wielokolumnowe
+Podzapytanie, które zwraca więcej niż jedną kolumnę i może być używane z operatorem IN:
+Wyjaśnienie: Podzapytanie zwraca dwie kolumny (rabat i data_zamowienia), a zapytanie główne filtruje wyniki na podstawie tej kombinacji
+```sql
+-- Znajdź zamówienia, które mają rabat większy niż te w tabeli z zamówieniami, gdzie rabat jest wyższy niż 20
+SELECT zamowienie_id, rabat
+FROM Zamowienia
+WHERE (rabat, data_zamowienia) IN 
+    (SELECT rabat, data_zamowienia FROM Zamowienia WHERE rabat > 20);
+
+```
+### Zapytanie 9
+
+```sql
+
+```
+### Zapytanie 10
+
+```sql
+
+```
+### Zapytanie 9
+
+```sql
+
+```
+### Zapytanie 10
+
+```sql
+
+```
+### Zapytanie 9
+
+```sql
+
+```
+### Zapytanie 10
+
+```sql
+
+```
+### Zapytanie 9
+
+```sql
+
+```
+### Zapytanie 10
+
+```sql
+
+```
+### Zapytanie 9
+
+```sql
+
+```
+### Zapytanie 10
+
+```sql
+
+```
+### Zapytanie 9
+
+```sql
+
+```
+### Zapytanie 10
+
+```sql
+
+```
+### Zapytanie 9
+
+```sql
+
+```
+### Zapytanie 10
+
+```sql
+
+```
