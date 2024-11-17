@@ -27,7 +27,9 @@ zapytania i grupowanie
 21. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-21)
 22. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-22)
 23. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-23)
-24. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-24)
+24. [WHERE,OR - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-23)
+24. [NOT EQUALS - wyszukaj wszystkie okna,które nie są z aluminium](#zapytanie-23)
+25. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-24)
 25. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-25)
 26. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-26)
 27. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-27)
@@ -145,74 +147,93 @@ DENY DELETE ON dbo.Promocje TO user2;
 
 
 
-### Zapytanie 8
+### Zapytanie 13
 PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny
 ```sql
 ALTER TABLE Promocje
 ADD CONSTRAINT PK_Promocje PRIMARY KEY (promocja_id);
 ```
-### Zapytanie 9
+### Zapytanie 14
 NOT NULL- Zmiana kolumny 'nazwa', aby była obowiązkowa i nie akceptowała wartości NULL
 ```sql
 ALTER TABLE Promocje
 ALTER COLUMN nazwa NVARCHAR(100) NOT NULL;
 ```
-### Zapytanie 10
+### Zapytanie 15
 CHECK - Dodajemy constraint CHECK, aby zapewnić, że rabat nie może być mniejszy niż 0 i nie większy niż 100.
 ```sql
 ALTER TABLE Promocje
 ADD CONSTRAINT CHK_Rabat CHECK (rabat >= 0 AND rabat <= 100);
 ```
-### Zapytanie 11
+### Zapytanie 16
 UNIQUE - Zmiana kolumny 'nazwa', aby była unikalna. Oznacza to, że każda promocja będzie miała inną nazwę.
 ```sql
 ALTER TABLE Promocje
 ADD CONSTRAINT UQ_Nazwa UNIQUE (nazwa);
 ```
-### Zapytanie 12
+### Zapytanie 17
 DEFAULT - Ustawienie wartości domyślnej dla kolumny 'data_rozpoczecia', aby była ustawiona na dzisiejszą datę, jeśli użytkownik jej nie poda.
 ```sql
 ALTER TABLE Promocje
 ADD CONSTRAINT DF_DataRozpoczecia DEFAULT GETDATE() FOR data_rozpoczecia;
 ```
-### Zapytanie 13
+### Zapytanie 18
 INDEX - Stworzenie indeksu dla kolumny 'data_rozpoczecia', aby przyspieszyć wyszukiwanie promocji po dacie rozpoczęcia.
 ```sql
 CREATE INDEX IX_DataRozpoczecia ON Promocje(data_rozpoczecia);
 ```
-### Zapytanie 14
+### Zapytanie 19
 TRUNCATE TABLE - Usunięcie wszystkich danych z tabel
 ```sql
 TRUNCATE TABLE Promocje;
 ```
-### Zapytanie 15
+### Zapytanie 20
 DROP TABLE - Całkowite usunięcie tabeli z bazy danych
 ```sql
 DROP TABLE Promocje;
 ```
-
-### Zapytanie 16  
+### Zapytanie 21  
+SELECT - Wybierz wszystkich klientów 
+```sql
+SELECT *
+FROM Klienci
+```
+### Zapytanie 21  
 SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola
 ```sql
 SELECT *
 FROM Klienci
 WHERE adres LIKE '%Stalowa Wola%';
 ```
-### Zapytanie 17 
+### Zapytanie 22 
 BETWEEN - Wybór produktów z przedziału 300 do 800 zł
 ```sql
 SELECT *
 FROM Produkty
 WHERE cena BETWEEN 300 AND 800;
 ```
-### Zapytanie 18
+### Zapytanie 23
 WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł
 ```sql
 SELECT *
 FROM Pracownicy
 WHERE imie IN('Piotr','Paweł');
 ```
+### Zapytanie 24
+WHERE,OR - wyszukaj pracowników o imieniu Piotr lub Paweł
+```sql
+SELECT *
+FROM Pracownicy
+WHERE imie ='Piotr' OR imie='Paweł';
 ```
+
+### Zapytanie 23
+NOT EQUALS - 
+```sql
+SELECT *
+FROM Okna WHERE material<>'aluminium'
+```
+
 ### Zapytanie 19
 ORDER BY - Sortowanie wyników według daty zamówienia
 ```sql
