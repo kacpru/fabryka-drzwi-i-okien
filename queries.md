@@ -31,24 +31,29 @@ zapytania i grupowanie
 25. [NOT EQUALS - wyszukaj wszystkie okna,które nie są z aluminium](#zapytanie-25)
 26. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-26)
 27. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-27)
-28. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-26)
-29. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-27)
-30. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-28)
-31. [GROUP BY,SUM - Obliczenie łącznej wartości zamówień](#zapytanie-29)
-32. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-30)
-33. [CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"](#zapytanie-31)
-34. [MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli](#zapytanie-32)
+28. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-28)
+29. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-29)
+30. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-30)
+31. [GROUP BY,SUM - Obliczenie łącznej wartości zamówień](#zapytanie-31)
+32. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-32)
+33. [CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"](#zapytanie-33)
+34. [MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli](#zapytanie-34)
 
 łączenie tabel
 
-35. [INNER JOIN -pobranie listy klientów](#zapytanie-41)
-36. [LEFT JOIN - pobranie listy klientów](#zapytanie-42)
-37. [RIGHT JOIN nowe](#zapytanie-43)
-38. [FULL JOIN - pobranie listy klientów i zamówień](#zapytanie-44)
-39. [CROSS JOIN - iloczyń kartezjański klientów i produktów](#zapytanie-45)
-40. [SELF JOIN - lista produktów z tej samej kategorii](#zapytanie-46)
-41. [NATURAL JOIN - automatyczne połączenie tabel](#zapytanie-47)
-42. [LEFT JOIN,WHERE](#zapytanie-48)
+35. [INNER JOIN -pobranie listy klientów](#zapytanie-35)
+36. [LEFT JOIN - Pobranie wszystkich wierszy z lewej tabeli i dopasowanych z prawej.](#zapytanie-36)
+37. [RIGHT JOIN - Pobranie wszystkich wierszy z prawej tabeli i dopasowanych z lewej.](#zapytanie-37)
+38. [FULL JOIN - pobranie listy klientów i zamówień](#zapytanie-38)
+39. [CROSS JOIN - iloczyń kartezjański klientów i produktów](#zapytanie-39)
+40. [SELF JOIN - lista produktów z tej samej kategorii](#zapytanie-40)
+41. [NATURAL JOIN - Automatycznie łączy tabele po kolumnach o takich samych nazwach](#zapytanie-41)
+42. [LEFT JOIN,WHERE-Pobranie wszystkich wierszy z lewej tabeli i filtrowanie tylko tych bez dopasowania](#zapytanie-42)
+43. [INNER JOIN - Łączenie wielu tabel w jednym zapytaniu.](#zapytanie-43)
+44. [ANTI JOIN (wykorzystanie NOT IN) Pobranie wierszy, które nie mają dopasowania w innej tabeli](#zapytanie-44)
+45. [SELF JOIN - Używane do połączenia tabeli z samą sobą](#zapytanie-45)
+46. [JOIN z warunkiem nierówności – Łączenie tabel na podstawie warunku „mniejszy niż”](#zapytanie-46)
+    
 ---
 ### Zapytanie 1  
 CREATE TABLE - Tworzenie nowej tabeli Promocje.(Tworzenie pozostałych tabel w pliku schema.sql tj:Klienci,Produkty,Okna,Drzwi,Pracownicy,Zamówienia,SzczegółyZamówienia)
@@ -208,7 +213,7 @@ WHERE imie ='Piotr' OR imie='Paweł';
 ```
 
 ### Zapytanie 25
-NOT EQUALS - 
+NOT EQUALS - wyszukanie wszystkich okien, które nie są z aluminium
 ```sql
 SELECT *
 FROM Okna WHERE material<>'aluminium'
@@ -295,7 +300,7 @@ INNER JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
 ```
 
 ### Zapytanie 36
-LEFT JOIN -Pobranie wszystkich wierszy z lewej tabeli i dopasowanych z prawej.
+LEFT JOIN -
 Pobiera wszystkie wiersze z tabeli po lewej stronie, a dane z prawej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
 Otrzymamy listę wszystkich klientów. Jeśli dany klient nie ma zamówień, kolumna data_zamowienia będzie zawierała wartość NULL
 ```sql
