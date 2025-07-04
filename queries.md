@@ -250,7 +250,7 @@ SELECT klient_id, COUNT(zamowienie_id) AS liczba_zamowien
 FROM Zamowienia
 GROUP BY klient_id
 HAVING COUNT(zamowienie_id) > 1;
-
+```
 ### Zapytanie 31
 GROUP BY,SUM - Obliczenie łącznej wartości zamówień
 ```sql
@@ -275,21 +275,15 @@ SELECT nazwa,
            ELSE 'Niski rabat'
        END AS KategoriaRabatu
 FROM Promocje;
-
 ```
-MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli
+
+
 ### Zapytanie 34
-MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli
+MIN,MAX - Wybranie najwcześniejszej i najpóźniejszej daty zamówienia w tabeli
 ```sql
 SELECT MIN(data_zamowienia) AS NajwczesniejszeZamowienie, MAX(data_zamowienia) AS NajpóźniejszeZamowienie
 FROM Zamowienia;
-
 ```
-
-
-
-
-
 
 ### Zapytanie 35
 INNER JOIN - Pobranie wierszy, które mają dopasowanie w obu tabelach.
@@ -299,45 +293,46 @@ SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
 FROM Klienci
 INNER JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
 ```
+
 ### Zapytanie 36
-LEFT JOIN (LEFT OUTER JOIN)
+LEFT JOIN -Pobranie wszystkich wierszy z lewej tabeli i dopasowanych z prawej.
 Pobiera wszystkie wiersze z tabeli po lewej stronie, a dane z prawej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
-Otrzymasz listę wszystkich klientów. Jeśli dany klient nie ma zamówień, kolumna data_zamowienia będzie zawierała wartość NULL
+Otrzymamy listę wszystkich klientów. Jeśli dany klient nie ma zamówień, kolumna data_zamowienia będzie zawierała wartość NULL
 ```sql
 SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
 FROM Klienci
 LEFT JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
 ```
 ### Zapytanie 37
-RIGHT JOIN (RIGHT OUTER JOIN)
-Opis: Pobiera wszystkie wiersze z tabeli po prawej stronie, a dane z lewej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
+RIGHT JOIN - Pobranie wszystkich wierszy z prawej tabeli i dopasowanych z lewej.
+Pobiera wszystkie wiersze z tabeli po prawej stronie, a dane z lewej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
 Wynik: Otrzymasz listę wszystkich szczegółów zamówień. Jeśli w zamówieniu użyto produktu, którego nie ma w tabeli Produkty, kolumna nazwa zwróci NULL.
-
 ```sql
 SELECT Produkty.nazwa, SzczegolyZamowienia.ilosc
 FROM Produkty
 RIGHT JOIN SzczegolyZamowienia ON Produkty.produkt_id = SzczegolyZamowienia.produkt_id;
 ```
-### Zapytanie 38
-FULL JOIN (FULL OUTER JOIN)
-Opis: Pobiera wszystkie wiersze z obu tabel. Jeśli wiersz nie ma dopasowania, zwraca NULL dla brakujących danych.
-Wynik: Otrzymasz listę wszystkich klientów i wszystkich zamówień. Klienci bez zamówień i zamówienia bez klientów będą miały NULL w brakujących kolumnach.
 
+### Zapytanie 38
+FULL JOIN-Pobranie wszystkich wierszy z obu tabel, łącznie z niedopasowanymi.
+Pobiera wszystkie wiersze z obu tabel. Jeśli wiersz nie ma dopasowania, zwraca NULL dla brakujących danych.
+Otrzymamy listę wszystkich klientów i wszystkich zamówień. Klienci bez zamówień i zamówienia bez klientów będą miały NULL w brakujących kolumnach.
 ```sql
 SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
 FROM Klienci
 FULL JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
 ```
-### Zapytanie 39
-CROSS JOIN
-Opis: Tworzy iloczyn kartezjański obu tabel – łączy każdy wiersz z każdej tabeli ze sobą.
-Wynik: Otrzymasz każdą możliwą kombinację klientów i produktów. Jeśli masz 10 klientów i 5 produktów, wynik zawiera 50 wierszy
 
+### Zapytanie 39
+CROSS JOIN-pobieranie każdej możliwej kombinacji klientów i produktów
+Tworzy iloczyn kartezjański obu tabel – łączy każdy wiersz z każdej tabeli ze sobą.
+Otrzymasz każdą możliwą kombinację klientów i produktów. Jeśli masz 10 klientów i 5 produktów, wynik zawiera 50 wierszy
 ```sql
 SELECT Klienci.imie, Produkty.nazwa
 FROM Klienci
 CROSS JOIN Produkty;
 ```
+
 ### Zapytanie 40
 SELF JOIN
 Opis: Łączy tabelę z samą sobą.
@@ -349,7 +344,7 @@ FROM Produkty p1
 INNER JOIN Produkty p2 ON p1.kategoria = p2.kategoria AND p1.produkt_id <> p2.produkt_id;
 ```
 ### Zapytanie 41
-NATURAL JOIN
+NATURAL JOIN Automatycznie łączy tabele po kolumnach o takich samych nazwach.
 Opis: Automatycznie łączy tabele na podstawie wspólnych kolumn o tej samej nazwie i typie danych.
 Wynik: Zwraca wiersze z obu tabel, które mają wspólną kolumnę produkt_id. Jeśli nie ma wspólnych danych, wynik będzie pusty.
 
@@ -359,22 +354,19 @@ FROM Produkty
 NATURAL JOIN SzczegolyZamowienia;
 ```
 ### Zapytanie 42
-LEFT JOIN z filtrem
-Opis: Pobiera wiersze z lewej tabeli, ale ogranicza wyniki do tych, które nie mają dopasowania w prawej tabeli.
-Wynik: Lista klientów, którzy nie złożyli zamówień.
-
+LEFT JOIN z filtrem - Pobranie wszystkich wierszy z lewej tabeli i filtrowanie tylko tych bez dopasowania.
+Pobiera wiersze z lewej tabeli, ale ogranicza wyniki do tych, które nie mają dopasowania w prawej tabeli.
+Otrzymamy liste klientów, którzy nie złożyli zamówień.
 ```sql
-
 SELECT Klienci.imie, Klienci.nazwisko
 FROM Klienci
 LEFT JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id
 WHERE Zamowienia.zamowienie_id IS NULL;
 ```
-### Zapytanie 43
-INNER JOIN z wieloma tabelami
-Opis: Łączy trzy lub więcej tabel w jednym zapytaniu.
-Wynik: Lista zamówień z nazwami klientów i produktów, które zostały zamówione.
 
+### Zapytanie 43 
+INNER JOIN - Łączenie wielu tabel w jednym zapytaniu.
+Otrzymamy listę zamówień z nazwami klientów i produktów, które zostały zamówione.
 ```sql
 SELECT Zamowienia.zamowienie_id, Klienci.imie, Klienci.nazwisko, Produkty.nazwa
 FROM Zamowienia
@@ -382,10 +374,11 @@ INNER JOIN Klienci ON Zamowienia.klient_id = Klienci.klient_id
 INNER JOIN SzczegolyZamowienia ON Zamowienia.zamowienie_id = SzczegolyZamowienia.zamowienie_id
 INNER JOIN Produkty ON SzczegolyZamowienia.produkt_id = Produkty.produkt_id;
 ```
+
 ### Zapytanie 44
-ANTI JOIN (wykorzystanie NOT IN)
-Opis: Wyświetla wiersze z jednej tabeli, które nie mają dopasowania w drugiej tabeli.
-Wynik: Lista produktów, które nigdy nie zostały sprzedane.
+ANTI JOIN (wykorzystanie NOT IN) Pobranie wierszy, które nie mają dopasowania w innej tabeli
+Otrzymamy wiersze z jednej tabeli, które nie mają dopasowania w drugiej tabeli.
+czyli np. liste produktów, które nigdy nie zostały sprzedane.
 
 ```sql
 SELECT Produkty.nazwa
@@ -393,7 +386,8 @@ FROM Produkty
 WHERE produkt_id NOT IN (SELECT produkt_id FROM SzczegolyZamowienia);
 ```
 ### Zapytanie 45
-SELF JOIN - Używane do połączenia tabeli z samą sobą, np. do analizy hierarchii,pobieramy pary promocji, gdzie jedna kończy się przed rozpoczęciem drugiej.
+SELF JOIN - Używane do połączenia tabeli z samą sobą.
+np. do analizy hierarchii,pobieramy pary promocji, gdzie jedna kończy się przed rozpoczęciem drugiej.
 ```sql
 SELECT P1.promocja_id, P1.nazwa AS Nazwa1, P2.nazwa AS Nazwa2
 FROM Promocje P1
@@ -402,7 +396,8 @@ ON P1.data_zakonczenia < P2.data_rozpoczecia;
 
 ```
 ### Zapytanie 46
-Łączy rekordy na podstawie warunku nierówności,Łączymy promocje z zamówieniami, gdzie cena zamówienia jest mniejsza niż wartość rabatu pomnożona przez 100 
+JOIN z warunkiem nierówności – Łączenie tabel na podstawie warunku „mniejszy niż”.
+Łączy rekordy na podstawie warunku nierówności,łączymy promocje z zamówieniami, gdzie cena zamówienia jest mniejsza niż wartość rabatu pomnożona przez 100 
 ```sql
 SELECT P.promocja_id, P.nazwa, Z.zamowienie_id, Z.cena
 FROM Promocje P
