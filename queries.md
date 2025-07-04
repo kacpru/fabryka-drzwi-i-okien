@@ -27,40 +27,28 @@ zapytania i grupowanie
 21. [SELECT,WHERE,LIKE - Wybierz wszystkich klientów z miasta Stalowa Wola](#zapytanie-21)
 22. [BETWEEN - Wybór produktów z przedziału 300 do 800 zł](#zapytanie-22)
 23. [WHERE IN - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-23)
-24. [WHERE,OR - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-23)
-24. [NOT EQUALS - wyszukaj wszystkie okna,które nie są z aluminium](#zapytanie-23)
-25. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-24)
-25. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-25)
-26. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-26)
-27. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-27)
-28. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-28)
-29. [GROUP BY,SUM - Obliczenie łącznej wartości zamówień](#zapytanie-29)
-30. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-30)
-31. [CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"](#zapytanie-31)
-32. [MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli](#zapytanie-32)
-33. [](#zapytanie-33)
-34. [](#zapytanie-34)
-35. [](#zapytanie-35)
-36. [](#zapytanie-36)
-37. [](#zapytanie-37)
-38. [](#zapytanie-38)
-39. [](#zapytanie-39)
-40. [](#zapytanie-40)
+24. [WHERE,OR - wyszukaj pracowników o imieniu Piotr lub Paweł](#zapytanie-24)
+25. [NOT EQUALS - wyszukaj wszystkie okna,które nie są z aluminium](#zapytanie-25)
+26. [ORDER BY - Sortowanie wyników według daty zamówienia](#zapytanie-26)
+27. [ORDER BY,TOP - Pobranie pięciu ostatnich wysłąnych zamówień](#zapytanie-27)
+28. [DISTINCT - Wyszukaj wszystkie stanowiska w firmie](#zapytanie-26)
+29. [GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia](#zapytanie-27)
+30. [GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie](#zapytanie-28)
+31. [GROUP BY,SUM - Obliczenie łącznej wartości zamówień](#zapytanie-29)
+32. [GROUP BY,AVG,AS - Grupowanie produktów według typu i wyciąganie średniej ceny](#zapytanie-30)
+33. [CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"](#zapytanie-31)
+34. [MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli](#zapytanie-32)
 
 łączenie tabel
 
-41. [INNER JOIN -pobranie listy klientów](#zapytanie-41)
-42. [LEFT JOIN - pobranie listy klientów](#zapytanie-42)
-43. [RIGHT JOIN nowe](#zapytanie-43)
-44. [FULL JOIN - pobranie listy klientów i zamówień](#zapytanie-44)
-45. [CROSS JOIN - iloczyń kartezjański klientów i produktów](#zapytanie-45)
-46. [SELF JOIN - lista produktów z tej samej kategorii](#zapytanie-46)
-47. [NATURAL JOIN - automatyczne połączenie tabel](#zapytanie-47)
-48. [LEFT JOIN,WHERE](#zapytanie-48)
-49. [](#zapytanie-49)
-50. [](#zapytanie-50)
-51. [](#zapytanie-51)
-52. [](#zapytanie-52)
+35. [INNER JOIN -pobranie listy klientów](#zapytanie-41)
+36. [LEFT JOIN - pobranie listy klientów](#zapytanie-42)
+37. [RIGHT JOIN nowe](#zapytanie-43)
+38. [FULL JOIN - pobranie listy klientów i zamówień](#zapytanie-44)
+39. [CROSS JOIN - iloczyń kartezjański klientów i produktów](#zapytanie-45)
+40. [SELF JOIN - lista produktów z tej samej kategorii](#zapytanie-46)
+41. [NATURAL JOIN - automatyczne połączenie tabel](#zapytanie-47)
+42. [LEFT JOIN,WHERE](#zapytanie-48)
 ---
 ### Zapytanie 1  
 CREATE TABLE - Tworzenie nowej tabeli Promocje.(Tworzenie pozostałych tabel w pliku schema.sql tj:Klienci,Produkty,Okna,Drzwi,Pracownicy,Zamówienia,SzczegółyZamówienia)
@@ -145,8 +133,6 @@ DENY DELETE ON dbo.Promocje TO user2;
 ```
 
 
-
-
 ### Zapytanie 13
 PRIMARY KEY - Ustawienie kolumny 'promocja_id' jako klucz główny
 ```sql
@@ -193,12 +179,6 @@ DROP TABLE - Całkowite usunięcie tabeli z bazy danych
 DROP TABLE Promocje;
 ```
 ### Zapytanie 21  
-SELECT - Wybierz wszystkich klientów 
-```sql
-SELECT *
-FROM Klienci
-```
-### Zapytanie 21  
 SELECT - Wybierz wszystkich klientów z miasta Stalowa Wola
 ```sql
 SELECT *
@@ -227,21 +207,21 @@ FROM Pracownicy
 WHERE imie ='Piotr' OR imie='Paweł';
 ```
 
-### Zapytanie 23
+### Zapytanie 25
 NOT EQUALS - 
 ```sql
 SELECT *
 FROM Okna WHERE material<>'aluminium'
 ```
 
-### Zapytanie 19
+### Zapytanie 26
 ORDER BY - Sortowanie wyników według daty zamówienia
 ```sql
 SELECT zamowienie_id, data_zamowienia, klient_id
 FROM Zamowienia
 ORDER BY data_zamowienia DESC;
 ```
-### Zapytanie 20
+### Zapytanie 27
 ORDER BY,TOP - Pobranie pięciu ostatnich wysłanych zamówień
 ```sql
 SELECT TOP 5 *
@@ -249,21 +229,21 @@ FROM Zamowienia
 WHERE status = 'wysłane'
 ORDER BY data_zamowienia DESC;
 ```
-### Zapytanie 21
+### Zapytanie 28
 DISTINCT - Wyszukaj wszystkie stanowiska w firmie
 ```sql
 SELECT DISTINCT stanowisko
 FROM Pracownicy;
 ```
-### Zapytanie 22
-GROUP BY - Grupowanie zamówień według statusu zamówienia
+### Zapytanie 29
+GROUP BY,COUNT - Grupowanie zamówień według statusu zamówienia
 ```sql
 SELECT status, COUNT(*) AS liczba_zamowien
 FROM Zamowienia
 GROUP BY status;
 ```
 
-### Zapytanie 23
+### Zapytanie 30
 GROUP BY, HAVING - Wyszukaj klientów,którzy złożyli więcej niż jedno zamówienie
 ```sql
 SELECT klient_id, COUNT(zamowienie_id) AS liczba_zamowien
@@ -271,7 +251,7 @@ FROM Zamowienia
 GROUP BY klient_id
 HAVING COUNT(zamowienie_id) > 1;
 
-### Zapytanie 24
+### Zapytanie 31
 GROUP BY,SUM - Obliczenie łącznej wartości zamówień
 ```sql
 SELECT zamowienie_id, SUM(ilosc * cena) AS LacznaWartosc
@@ -279,14 +259,14 @@ FROM SzczegolyZamowienia
 GROUP BY zamowienie_id;
 
 ```
-### Zapytanie 25
+### Zapytanie 32
 GROUP BY,AVG, AS - Grupowanie produktów według typu i wyciąganie średniej ceny 
 ```sql
 SELECT nazwa, AVG(cena) AS srednia_cena
 FROM Produkty
 GROUP BY nazwa
 ```
-### Zapytanie 25
+### Zapytanie 33
 CASE - Dodanie kolumny, która kategoryzuje rabaty na "Wysoki" lub "Niski"
 ```sql
 SELECT nazwa, 
@@ -298,7 +278,7 @@ FROM Promocje;
 
 ```
 MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli
-### Zapytanie 25
+### Zapytanie 34
 MIN,MAX - Wybranie najwcześniejszej i najpóźniejszje daty zamówienia w tabeli
 ```sql
 SELECT MIN(data_zamowienia) AS NajwczesniejszeZamowienie, MAX(data_zamowienia) AS NajpóźniejszeZamowienie
@@ -311,7 +291,7 @@ FROM Zamowienia;
 
 
 
-### Zapytanie 26
+### Zapytanie 35
 INNER JOIN - Pobranie wierszy, które mają dopasowanie w obu tabelach.
 Otrzymamy listę klientów wraz z datami ich zamówień. Pojawią się tylko ci klienci, którzy mają złożone zamówienia.
 ```sql
@@ -319,7 +299,7 @@ SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
 FROM Klienci
 INNER JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
 ```
-### Zapytanie 27
+### Zapytanie 36
 LEFT JOIN (LEFT OUTER JOIN)
 Pobiera wszystkie wiersze z tabeli po lewej stronie, a dane z prawej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
 Otrzymasz listę wszystkich klientów. Jeśli dany klient nie ma zamówień, kolumna data_zamowienia będzie zawierała wartość NULL
@@ -328,7 +308,7 @@ SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
 FROM Klienci
 LEFT JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
 ```
-### Zapytanie 28
+### Zapytanie 37
 RIGHT JOIN (RIGHT OUTER JOIN)
 Opis: Pobiera wszystkie wiersze z tabeli po prawej stronie, a dane z lewej tabeli tylko wtedy, gdy istnieje dopasowanie. W przeciwnym razie zwraca NULL.
 Wynik: Otrzymasz listę wszystkich szczegółów zamówień. Jeśli w zamówieniu użyto produktu, którego nie ma w tabeli Produkty, kolumna nazwa zwróci NULL.
@@ -338,7 +318,7 @@ SELECT Produkty.nazwa, SzczegolyZamowienia.ilosc
 FROM Produkty
 RIGHT JOIN SzczegolyZamowienia ON Produkty.produkt_id = SzczegolyZamowienia.produkt_id;
 ```
-### Zapytanie 29
+### Zapytanie 38
 FULL JOIN (FULL OUTER JOIN)
 Opis: Pobiera wszystkie wiersze z obu tabel. Jeśli wiersz nie ma dopasowania, zwraca NULL dla brakujących danych.
 Wynik: Otrzymasz listę wszystkich klientów i wszystkich zamówień. Klienci bez zamówień i zamówienia bez klientów będą miały NULL w brakujących kolumnach.
@@ -348,7 +328,7 @@ SELECT Klienci.imie, Klienci.nazwisko, Zamowienia.data_zamowienia
 FROM Klienci
 FULL JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id;
 ```
-### Zapytanie 30
+### Zapytanie 39
 CROSS JOIN
 Opis: Tworzy iloczyn kartezjański obu tabel – łączy każdy wiersz z każdej tabeli ze sobą.
 Wynik: Otrzymasz każdą możliwą kombinację klientów i produktów. Jeśli masz 10 klientów i 5 produktów, wynik zawiera 50 wierszy
@@ -358,7 +338,7 @@ SELECT Klienci.imie, Produkty.nazwa
 FROM Klienci
 CROSS JOIN Produkty;
 ```
-### Zapytanie 30
+### Zapytanie 40
 SELF JOIN
 Opis: Łączy tabelę z samą sobą.
 Wynik: Otrzymasz listę produktów z tej samej kategorii (ale różnych), sparowanych ze sobą.
@@ -368,7 +348,7 @@ SELECT p1.nazwa AS Produkt, p2.nazwa AS PowiazanyProdukt
 FROM Produkty p1
 INNER JOIN Produkty p2 ON p1.kategoria = p2.kategoria AND p1.produkt_id <> p2.produkt_id;
 ```
-### Zapytanie 31
+### Zapytanie 41
 NATURAL JOIN
 Opis: Automatycznie łączy tabele na podstawie wspólnych kolumn o tej samej nazwie i typie danych.
 Wynik: Zwraca wiersze z obu tabel, które mają wspólną kolumnę produkt_id. Jeśli nie ma wspólnych danych, wynik będzie pusty.
@@ -378,7 +358,7 @@ SELECT *
 FROM Produkty
 NATURAL JOIN SzczegolyZamowienia;
 ```
-### Zapytanie 32
+### Zapytanie 42
 LEFT JOIN z filtrem
 Opis: Pobiera wiersze z lewej tabeli, ale ogranicza wyniki do tych, które nie mają dopasowania w prawej tabeli.
 Wynik: Lista klientów, którzy nie złożyli zamówień.
@@ -390,7 +370,7 @@ FROM Klienci
 LEFT JOIN Zamowienia ON Klienci.klient_id = Zamowienia.klient_id
 WHERE Zamowienia.zamowienie_id IS NULL;
 ```
-### Zapytanie 33
+### Zapytanie 43
 INNER JOIN z wieloma tabelami
 Opis: Łączy trzy lub więcej tabel w jednym zapytaniu.
 Wynik: Lista zamówień z nazwami klientów i produktów, które zostały zamówione.
@@ -402,7 +382,7 @@ INNER JOIN Klienci ON Zamowienia.klient_id = Klienci.klient_id
 INNER JOIN SzczegolyZamowienia ON Zamowienia.zamowienie_id = SzczegolyZamowienia.zamowienie_id
 INNER JOIN Produkty ON SzczegolyZamowienia.produkt_id = Produkty.produkt_id;
 ```
-### Zapytanie 34
+### Zapytanie 44
 ANTI JOIN (wykorzystanie NOT IN)
 Opis: Wyświetla wiersze z jednej tabeli, które nie mają dopasowania w drugiej tabeli.
 Wynik: Lista produktów, które nigdy nie zostały sprzedane.
@@ -412,7 +392,7 @@ SELECT Produkty.nazwa
 FROM Produkty
 WHERE produkt_id NOT IN (SELECT produkt_id FROM SzczegolyZamowienia);
 ```
-### Zapytanie 
+### Zapytanie 45
 SELF JOIN - Używane do połączenia tabeli z samą sobą, np. do analizy hierarchii,pobieramy pary promocji, gdzie jedna kończy się przed rozpoczęciem drugiej.
 ```sql
 SELECT P1.promocja_id, P1.nazwa AS Nazwa1, P2.nazwa AS Nazwa2
@@ -421,7 +401,7 @@ JOIN Promocje P2
 ON P1.data_zakonczenia < P2.data_rozpoczecia;
 
 ```
-### Zapytanie 
+### Zapytanie 46
 Łączy rekordy na podstawie warunku nierówności,Łączymy promocje z zamówieniami, gdzie cena zamówienia jest mniejsza niż wartość rabatu pomnożona przez 100 
 ```sql
 SELECT P.promocja_id, P.nazwa, Z.zamowienie_id, Z.cena
@@ -430,91 +410,4 @@ JOIN Zamowienia Z
 ON Z.cena < P.rabat * 100;
 
 ```
-### Zapytanie 9
-1. Podzapytanie jednokolumnowe
-Podzapytanie, które zwraca pojedynczą kolumnę i jest używane w klauzuli WHERE:
-Wyjaśnienie: To zapytanie używa podzapytania jednokolumnowego w klauzuli WHERE, aby porównać rabat w tabeli Zamowienia z średnim rabatem przypisanym do klienta o klient_id = 1.
-```sql
--- Znajdź zamówienia, których rabat jest większy niż średni rabat dla zamówień klienta o ID = 1
-SELECT zamowienie_id, rabat
-FROM Zamowienia
-WHERE rabat > (SELECT AVG(rabat) FROM Zamowienia WHERE klient_id = 1);
-```
-### Zapytanie 10
-2. Podzapytanie wielokolumnowe
-Podzapytanie, które zwraca więcej niż jedną kolumnę i może być używane z operatorem IN:
-Wyjaśnienie: Podzapytanie zwraca dwie kolumny (rabat i data_zamowienia), a zapytanie główne filtruje wyniki na podstawie tej kombinacji
-```sql
 
-
-```
-### Zapytanie 9
-
-```sql
-
-```
-### Zapytanie 10
-
-```sql
-
-```
-### Zapytanie 9
-
-```sql
-
-```
-### Zapytanie 10
-
-```sql
-
-```
-### Zapytanie 9
-
-```sql
-
-```
-### Zapytanie 10
-
-```sql
-
-```
-### Zapytanie 9
-
-```sql
-
-```
-### Zapytanie 10
-
-```sql
-
-```
-### Zapytanie 9
-
-```sql
-
-```
-### Zapytanie 10
-
-```sql
-
-```
-### Zapytanie 9
-
-```sql
-
-```
-### Zapytanie 10
-
-```sql
-
-```
-### Zapytanie 9
-
-```sql
-
-```
-### Zapytanie 10
-
-```sql
-
-```
